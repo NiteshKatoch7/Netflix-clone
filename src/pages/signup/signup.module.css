@@ -1,0 +1,68 @@
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.contentContainer h1{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 900;
+    line-height: 70px;
+    margin: 0;
+}
+
+.contentContainer h5{
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 70px;
+    margin: 16px 0;
+    line-height: normal;
+}
+
+.formContainer{
+    text-align: center;
+    margin: 0;
+}
+
+.formContainer p{
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.formContainer form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    gap: 0 10px;
+}
+
+.inputField{
+    border-radius: 4px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.formContainer .inputField label{
+    color: white;
+    font-size: 14px;
+}
+
+.formContainer .inputField div{
+    /* border: 0.4px solid white; */
+}
+
+.inputField:focus{
+    border: 1px solid red;
+}
