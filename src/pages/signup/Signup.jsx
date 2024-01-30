@@ -10,7 +10,7 @@ export default function Signup() {
     <>
       <Container>
         <BackgroundImage />
-        <Header />
+        <Header login />
         <div className={styles.contentContainer}>
             <h1>Unlimited movies, TV shows and more</h1>
             <h5>Watch anywhere. Cancel anytime.</h5>
@@ -26,4 +26,6 @@ export default function Signup() {
   )
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+`;
