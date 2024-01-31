@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Netflix from './pages/Netflix';
-import Signin from './pages/signup/Signup';
+import Signin from './pages/signin/Signin';
 import Signup from './pages/signup/Signup';
 
 export default function App() {

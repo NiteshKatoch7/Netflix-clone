@@ -1,0 +1,94 @@
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    /* background-color: black; */
+    color: white;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+}
+
+.contentContainer h1{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 900;
+    line-height: 70px;
+    margin: 0;
+}
+
+.contentContainer h5{
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 70px;
+    margin: 16px 0;
+    line-height: normal;
+}
+
+.formContainer{
+    text-align: center;
+    margin: 0;
+}
+
+.formContainer p{
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.inputField{
+    border-radius: 4px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    min-height: 16px;
+    filter: opacity(100%);
+    padding: 0.7rem 1rem;
+    box-shadow: none;
+    outline: none;
+    min-height: 3.5rem;
+    border: 1px solid grey;
+    /* width: 49%; */
+}
+
+.inputField::placeholder{
+    color: white;
+    font-size: 16px;
+}
+
+.inputField:focus{
+    border: 1px solid white;
+    outline: none;
+}
+
+.formContainer .submitBtn{
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(229, 9, 20);
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    min-height: 3.5rem;
+    cursor: pointer;
+}
+
+.formContainer button[type=submit]{
+    padding: 0.5rem 1rem;
+    background-color: rgb(229,9,20);
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 0.2rem;
+    font-weight: bolder;
+    font-size: 1.05rem;
+    margin: 20px;
+}
