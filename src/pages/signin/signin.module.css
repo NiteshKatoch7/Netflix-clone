@@ -33,8 +33,12 @@
 }
 
 .formContainer{
-    text-align: center;
-    margin: 0;
+    width: 400px;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 4px;
+    padding: 40px;
 }
 
 .formContainer p{
@@ -56,6 +60,7 @@
     outline: none;
     min-height: 3.5rem;
     border: 1px solid grey;
+    width: 100%;
     /* width: 49%; */
 }
 
@@ -82,7 +87,7 @@
 }
 
 .formContainer button[type=submit]{
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
     background-color: rgb(229,9,20);
     border: none;
     cursor: pointer;
@@ -90,5 +95,24 @@
     border-radius: 0.2rem;
     font-weight: bolder;
     font-size: 1.05rem;
-    margin: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.formContainer p{
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 16px;
+}
+
+.formContainer p button{
+    color: rgb(255,255,255);
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 6px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 }
