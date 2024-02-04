@@ -33,7 +33,7 @@ export default function Navbar({isScrolled}) {
             </div>
             <div className="right-side">
                 <div className="search-box">
-                    <div className={`search ${showSearch ? "show-search" : null}`}>
+                    <div className={`search ${showSearch ? "show-search" : ""}`}>
                         <button onFocus={()=> setShowSearch(true)} onBlur={
                             ()=> {
                                 if (!inputHover) setShowSearch(false);
@@ -65,11 +65,22 @@ export default function Navbar({isScrolled}) {
 
 const Container = styled.div`
     nav{
+        position: sticky;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 4.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0 20px;
-        padding: 20px;
+        padding: 0 4rem;
+        z-index: 2;
+        background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+
+        &.scrolled{
+            background-color: black;
+        }
 
         .left-side{
             display: flex;
@@ -79,7 +90,7 @@ const Container = styled.div`
         }
 
         .icon-box{
-            max-width: 150px;
+            max-width: 100px;
 
             img{
                 width: 100%;
@@ -105,6 +116,68 @@ const Container = styled.div`
 
                     &:hover{
                         color: #b3b3b3;
+                    }
+                }
+            }
+        }
+
+        .right-side{
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 0 20px;
+
+            button{
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                &:focus{
+                    outline: none;
+                }
+                svg{
+                    color: #f34242;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .search-box{
+                .search{
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 10px 0;
+                }
+                button{
+                    background-color: transparent;
+                    svg{
+                        color: white;
+                        font-size: 1.2rem;
+                    }
+                }
+
+                input{
+                    width: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 0.3s ease-in-out;
+                    background-color: transparent;
+                    border: none;
+                    color: white;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+
+                .show-search{
+                    border: 1px solid white;
+                    background-color: rgba(0,0,0,0.6);
+                    border-radius: 4px;
+                    padding: 0.3rem;
+                    input{
+                        width: 100%;
+                        opacity: 1;
+                        visibility: visible;
+                        padding: 0 0.4rem; 
                     }
                 }
             }
