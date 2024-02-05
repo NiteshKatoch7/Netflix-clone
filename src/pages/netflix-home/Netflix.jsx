@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth } from '../../utils/firebase-authentication'
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -8,16 +8,31 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import backgroundImage from '../../assets/background/home/backgroundImage.jpg';
 import MovieLogo from '../../assets/background/home/MovieLogo.webp';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMovies, getGenres, netflixSelector } from '../../redux/reducer/movieReducer';
 
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const genresLoaded = useSelector(netflixSelector);
+  const movies = useSelector(netflixSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [])
+
+  useEffect(()=>{
+    if(genresLoaded){
+      dispatch(fetchMovies({ type: 'all'}))
+    }
+  })
 
   window.scroll = () => {
     setIsScrolled(window.scrollY === 0 ? alert("hi") : true);
     return () => (window.onscroll = null)
   }
-
+  
   onAuthStateChanged(auth, (user) =>{
     if(!user){
       navigate('/signin')
