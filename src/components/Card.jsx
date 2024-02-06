@@ -8,72 +8,73 @@ import {BsCheck} from 'react-icons/bs';
 import {AiOutlinePlus} from 'react-icons/ai';
 import {BiChevronDown} from 'react-icons/bi';
 
-export default function Card({movieData,isLiked = false}) {
-  const navigate = useNavigate();
-  const[isHovered,setIsHovered] = useState(false);
+export default React.memo( 
+  function Card({movieData,isLiked = false}) {
+    const navigate = useNavigate();
+    const[isHovered,setIsHovered] = useState(false);
 
-  return (
-      <Container onMouseEnter={()=> setIsHovered(true)} onMouseLeave={()=>  setIsHovered(false)}>
-        <img 
-          src={`https://image.tmdb.org/t/p/w500${movieData.image}`} 
-          alt="movieBackgroundImage" 
-        />
-        {
-          isHovered && (
-            <div className="hover">
-              <div className="image-video-container">
-                <img 
-                  src={`https://image.tmdb.org/t/p/w500${movieData.image}`} 
-                  alt="movieSmallBgImage" 
-                  onClick={()=>navigate('/player')}
-                />
-                <video 
-                  src={video} 
-                  autoPlay 
-                  loop 
-                  muted
-                  onClick={() => navigate('/player')}
-                ></video>
-              </div>
-              <div className="info-container">
-                <h3 className="name" onClick={()=> navigate('/player')}>
-                  {movieData.name}
-                </h3>
-                <div className="icons">
-                  <div className="controls">
-                    <IoPlayCircleSharp 
-                      title="play" 
-                      onClick={()=> navigate('/player')}
-                    />
-                    <RiThumbUpFill title='Like' />
-                    <RiThumbDownFill title='Dislike' />
-                    {
-                      isLiked ? (
-                        <BsCheck title="Remove From List"/>
-                      ) : (
-                        <AiOutlinePlus title="Add to my List"/>
-                      )
-                    }
+    return (
+        <Container onMouseEnter={()=> setIsHovered(true)} onMouseLeave={()=>  setIsHovered(false)}>
+          <img 
+            src={`https://image.tmdb.org/t/p/w500${movieData.image}`} 
+            alt="movieBackgroundImage" 
+          />
+          {
+            isHovered && (
+              <div className="hover">
+                <div className="image-video-container">
+                  <img 
+                    src={`https://image.tmdb.org/t/p/w500${movieData.image}`} 
+                    alt="movieSmallBgImage" 
+                    onClick={()=>navigate('/player')}
+                  />
+                  <video 
+                    src={video} 
+                    autoPlay 
+                    loop 
+                    muted
+                    onClick={() => navigate('/player')}
+                  ></video>
+                </div>
+                <div className="info-container">
+                  <h3 className="name" onClick={()=> navigate('/player')}>
+                    {movieData.name}
+                  </h3>
+                  <div className="icons">
+                    <div className="controls">
+                      <IoPlayCircleSharp 
+                        title="play" 
+                        onClick={()=> navigate('/player')}
+                      />
+                      <RiThumbUpFill title='Like' />
+                      <RiThumbDownFill title='Dislike' />
+                      {
+                        isLiked ? (
+                          <BsCheck title="Remove From List"/>
+                        ) : (
+                          <AiOutlinePlus title="Add to my List"/>
+                        )
+                      }
+                    </div>
+                    <div className="info">
+                      <BiChevronDown title="More Info" />
+                    </div>
                   </div>
-                  <div className="info">
-                    <BiChevronDown title="More Info" />
+                  <div className="genres">
+                    <ul>
+                      {movieData.genres.map((genre) => {
+                        return <li key={genre}>{genre}</li>
+                      })}
+                    </ul>
                   </div>
                 </div>
-                <div className="genres">
-                  <ul>
-                    {movieData.genres.map((genre) => {
-                      return <li key={genre}>{genre}</li>
-                    })}
-                  </ul>
-                </div>
               </div>
-            </div>
-          )
-        }
-      </Container>
-  )
-}
-
+            )
+          }
+        </Container>
+    )
+  }
+)
 const Container = styled.div`
   max-width: 230px;
   width: 230px;

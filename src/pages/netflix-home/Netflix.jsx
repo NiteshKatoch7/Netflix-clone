@@ -16,7 +16,7 @@ export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const { genresLoaded } = useSelector(netflixSelector);
-  const { movies } = useSelector(netflixSelector);
+  const { movies } = useSelector(netflixSelector);   
   const dispatch = useDispatch();
 
   useEffect(() => {
