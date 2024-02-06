@@ -10,12 +10,13 @@ import MovieLogo from '../../assets/background/home/MovieLogo.webp';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres, netflixSelector } from '../../redux/reducer/movieReducer';
+import Slider from '../../components/Slider';
 
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-  const genresLoaded = useSelector(netflixSelector);
-  const movies = useSelector(netflixSelector);
+  const { genresLoaded } = useSelector(netflixSelector);
+  const { movies } = useSelector(netflixSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Netflix() {
     setIsScrolled(window.scrollY === 0 ? alert("hi") : true);
     return () => (window.onscroll = null)
   }
-  
+
   onAuthStateChanged(auth, (user) =>{
     if(!user){
       navigate('/signin')
@@ -64,6 +65,7 @@ export default function Netflix() {
         </div>
       </div>
     </div>
+    <Slider movies={movies} />
     </Container>
   )
 }
