@@ -76,8 +76,8 @@ export default React.memo(
   }
 )
 const Container = styled.div`
-  max-width: 230px;
-  width: 230px;
+  max-width: 280px;
+  width: 280px;
   height: 100%;
   cursor: pointer;
   position: relative;
@@ -92,12 +92,13 @@ const Container = styled.div`
     height: max-content;
     width: 20rem;
     position: absolute;
-    top: -18vh;
+    bottom: 0;
     left: 0;
+    transform: translateX(-25px);
     border-radius: 0.3rem;
     box-shadow: rgba(0,0,0,0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
   }
   .image-video-container{
     position: relative;

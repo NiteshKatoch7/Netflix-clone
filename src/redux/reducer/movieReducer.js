@@ -58,6 +58,15 @@ export const fetchMovies = createAsyncThunk('netflix/trending', async({type},thu
     );
     //console.log(data);
 })
+
+export const fetchMoviesByGenre = createAsyncThunk('netflix/moviesByGenre', async({genre, type},thunkAPI)=>{
+    const {netflix:{genres}} = thunkAPI.getState();
+    return getRawData(
+        `${TMDB_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`,
+        genres
+    );
+    //console.log(data);
+})
 // return getRawData(`${TMDB_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}`)
 
 const movieSlice = createSlice({
@@ -72,6 +81,9 @@ const movieSlice = createSlice({
             state.genresLoaded = true;
         })
         builder.addCase(fetchMovies.fulfilled, (state,action)=>{
+            state.movies = action.payload;
+        })
+        builder.addCase(fetchMoviesByGenre.fulfilled, (state, action)=>{
             state.movies = action.payload;
         })
     },

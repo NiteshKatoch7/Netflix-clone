@@ -27,7 +27,7 @@ export default function Netflix() {
     if(genresLoaded){
       dispatch(fetchMovies({ type: 'all'}))
     }
-  })
+  }, [genresLoaded])
 
   window.scroll = () => {
     setIsScrolled(window.scrollY === 0 ? alert("hi") : true);
