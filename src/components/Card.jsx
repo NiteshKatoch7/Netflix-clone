@@ -7,11 +7,34 @@ import {RiThumbDownFill, RiThumbUpFill} from 'react-icons/ri';
 import {BsCheck} from 'react-icons/bs';
 import {AiOutlinePlus} from 'react-icons/ai';
 import {BiChevronDown} from 'react-icons/bi';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../utils/firebase-authentication';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { removeFromLikedMovies } from '../redux/reducer/movieReducer';
 
 export default React.memo( 
   function Card({movieData,isLiked = false}) {
     const navigate = useNavigate();
+    const [email, setEmail] = useState(undefined);
     const[isHovered,setIsHovered] = useState(false);
+    const dispatch = useDispatch();
+
+    onAuthStateChanged(auth, (user) =>{
+      if(user){
+        setEmail(user.email);
+      }else{
+        navigate('/signin')
+      }
+    })
+
+    const addToList = async()=>{
+      try{
+        await axios.post("http://localhost:5000/api/user/add", {email, data:movieData})
+      }catch(error){
+        console.log('Error in posting the Movies: ', error);
+      }
+    }
 
     return (
         <Container onMouseEnter={()=> setIsHovered(true)} onMouseLeave={()=>  setIsHovered(false)}>
@@ -50,9 +73,9 @@ export default React.memo(
                       <RiThumbDownFill title='Dislike' />
                       {
                         isLiked ? (
-                          <BsCheck title="Remove From List"/>
+                          <BsCheck title="Remove From List" onClick={()=>dispatch(removeFromLikedMovies({email, movieId: movieData.id}))}/>
                         ) : (
-                          <AiOutlinePlus title="Add to my List"/>
+                          <AiOutlinePlus title="Add to my List" onClick={addToList}/>
                         )
                       }
                     </div>
@@ -76,8 +99,8 @@ export default React.memo(
   }
 )
 const Container = styled.div`
-  max-width: 280px;
-  width: 280px;
+  max-width: 270px;
+  width: 270px;
   height: 100%;
   cursor: pointer;
   position: relative;
