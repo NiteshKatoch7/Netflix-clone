@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Netflix UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the frontend UI for a Netflix clone application, built using React and various modern libraries. The application allows users to browse trending movies and manage their movie preferences.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [API Integration](#api-integration)
+- [Redux Reducers](#redux-reducers)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To install and run this project locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/netflix-ui.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd netflix-ui
+    ```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
+4. Start the development server:
+    ```sh
+    npm start
+    ```
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After starting the development server, the application will be running locally. You can access it in your web browser at `http://localhost:3000`.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Browse trending movies and TV shows
+- View movies by genre
+- Manage liked movies
+- Responsive UI built with Material-UI and styled-components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Integration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This application interacts with the following APIs:
 
-### `npm run eject`
+- **TMDB API:** For fetching genres, trending movies, and movies by genre
+- **Custom Backend API:** For managing user liked movies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Redux Reducers
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Redux reducers in this file manage the state for the Netflix UI application. These reducers play a crucial role in handling actions, such as fetching data from APIs and updating the UI accordingly.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### `initialState`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This object defines the initial state of the Redux store, including properties for `movies`, `genresLoaded`, and `genres`.
 
-## Learn More
+#### Data Fetching Thunks
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **`getGenres`**: Fetches the list of movie genres from the TMDB API. Upon successful completion, it updates the `genres` state with the fetched data and sets `genresLoaded` to `true`.
+- **`fetchMovies`**: Fetches trending movies from the TMDB API for a specified time period and type. It updates the `movies` state with the fetched result.
+- **`fetchMoviesByGenre`**: Fetches movies belonging to a specific genre from the TMDB API. It updates the `movies` state accordingly.
+- **`getUserLikedMovies`**: Fetches the list of movies liked by a user from a custom backend API. It updates the `movies` state with the fetched data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Utility Functions
 
-### Code Splitting
+- **`createArrayFromRawData`**: Processes raw movie data received from the TMDB API and creates an array of movie objects with selected properties.
+- **`getRawData`**: Fetches raw movie data from the TMDB API based on provided parameters. It iterates over multiple pages of API results to collect a sufficient number of movies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Action Type Handlers
 
-### Analyzing the Bundle Size
+The `extraReducers` section listens for specific action types' fulfilled states and updates the Redux store accordingly. For example, it updates `genres` when `getGenres` action is fulfilled, or updates `movies` when data fetching actions are fulfilled.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+These reducers collectively manage the state of the Netflix UI application, ensuring smooth data flow and seamless user experience.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contributing
 
-### Advanced Configuration
+Contributions are welcome! To contribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This project is licensed under the ISC License.
 
-### `npm run build` fails to minify
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/)
+- [Material-UI](https://mui.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [TMDB API](https://www.themoviedb.org/documentation/api)
+
+---
+
+Feel free to add more details or modify the sections according to your project's specifics!
