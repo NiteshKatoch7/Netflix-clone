@@ -89,10 +89,6 @@ Contributions are welcome! To contribute:
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the ISC License.
-
 ## Acknowledgements
 
 - [React](https://reactjs.org/)
@@ -100,6 +96,3 @@ This project is licensed under the ISC License.
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [TMDB API](https://www.themoviedb.org/documentation/api)
 
----
-
-Feel free to add more details or modify the sections according to your project's specifics!
